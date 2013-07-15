@@ -6,7 +6,7 @@ var dojoConfig = {
 	// so we can load Dojo from the CDN whilst still being able to
 	// load local modules
 	packages: [{
-		name: "demo",
-		location: location.pathname.replace(/\/[^/]*$/, '/js/demo')
+		name: "ebs",
+		location: location.pathname.replace(/\/[^/]*$/, '/js/ebs')
 	}]
 };
