@@ -15,7 +15,7 @@ require([ "dojo/dom", "dojo/on", "dojo/request/xhr", "dojox/xml/parser",
 			return;
 		}
 
-		var url = "php/mockService.php?h=" + heightBox.value + "&w="
+		var url = "service/mockService.php?h=" + heightBox.value + "&w="
 				+ widthBox.value + "&q=" + qtyBox.value + "&g=" + grills.value;
 
 		xhr(url, {
