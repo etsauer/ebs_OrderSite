@@ -26,7 +26,7 @@ switch ($grills) {
 
 $unitPrice = round($height * $width * $rate, 2);
 $subtotal = $unitPrice * $qty;
-$shipping = ($subtotal > 85) ? 0 : round(15, 2);
+$shipping = ($subtotal > 85) ? 'FREE' : round(15, 2);
 $totalPrice = $subtotal + $shipping;
 
 $resultsXML = '';
