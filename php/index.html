@@ -12,6 +12,16 @@
 	src="js/dojo-module-loader.js"></script>
 <title>Explorer Building Systems - Order Form</title>
 <style>
+#right {
+	float: right;
+	width: 33%
+}
+
+#main {
+	float: right;
+	width: 66%;
+}
+
 .align-right {
 	text-align: right;
 }
@@ -62,92 +72,95 @@ select {
 <body>
 	<div class="wrapper">
 		<div id="container">
+			<div id="right">
+				<div class="inside">
+					<div id="cart"></div>
+				</div>
+			</div>
 			<div id="main">
 				<div class="inside">
 					<h1 class="dark">Build Your Windows</h1>
 					<div class="ce_form tableform block">
-						<form action="">
-							<div class="formbody">
-								<div class="table">
-									<div class="tablerow">
-										<div class="tablecell" id="error"></div>
+						<div class="formbody">
+							<div class="table">
+								<div class="tablerow">
+									<div class="tablecell" id="error"></div>
+								</div>
+								<div class="tablerow">
+									<div class="tablecell">
+										<label for="height">Height (in.)</label>
 									</div>
-									<div class="tablerow">
-										<div class="tablecell">
-											<label for="height">Height (in.)</label>
-										</div>
-										<div class="tablecell align-right">
-											<input type="text" id="height" />
-										</div>
+									<div class="tablecell align-right">
+										<input type="text" id="height" />
 									</div>
-									<div class="tablerow">
-										<div class="tablecell">
-											<label for="width">Width (in.)</label>
-										</div>
-										<div class="tablecell align-right">
-											<input type="text" id="width" />
-										</div>
+								</div>
+								<div class="tablerow">
+									<div class="tablecell">
+										<label for="width">Width (in.)</label>
 									</div>
-									<div class="tablerow">
-										<div class="tablecell">
-											<label for="qty">Quantity</label>
-										</div>
-										<div class="tablecell align-right">
-											<input type="text" id="qty" />
-										</div>
+									<div class="tablecell align-right">
+										<input type="text" id="width" />
 									</div>
-									<div class="tablerow">
-										<div class="tablecell">
-											<label for="grills">Select Grills</label>
-										</div>
-										<div class="tablecell">
-											<select id="grills">
-												<option value="stdnone">Standard/No Grills</option>
-												<option value="std">Standard w/ Grills</option>
-												<option value="prarie">Prarie Grills</option>
-												<option value="roundtop">Round Top Grills</option>
-											</select>
-										</div>
+								</div>
+								<div class="tablerow">
+									<div class="tablecell">
+										<label for="qty">Quantity</label>
 									</div>
-									<div class="tablerow bdr-top bdr-left bdr-right">
-										<div class="tablecell">Unit Price:</div>
-										<div class="tablecell output align-right">
-											<output id="unitPrice" for="height width">0.00</output>
-										</div>
+									<div class="tablecell align-right">
+										<input type="text" id="qty" />
 									</div>
-									<div class="tablerow bdr-left bdr-right">
-										<div class="tablecell">Quantity:</div>
-										<div class="tablecell output align-right">
-											<output id="quantity">0</output>
-										</div>
+								</div>
+								<div class="tablerow">
+									<div class="tablecell">
+										<label for="grills">Select Grills</label>
 									</div>
-									<div class="tablerow bdr-left bdr-right bdr-bottom">
-										<div class="tablecell">Sub Total:</div>
-										<div class="tablecell output align-right">
-											<output id="subtotal">0</output>
-										</div>
+									<div class="tablecell">
+										<select id="grills">
+											<option value="stdnone">Standard/No Grills</option>
+											<option value="std">Standard w/ Grills</option>
+											<option value="prarie">Prarie Grills</option>
+											<option value="roundtop">Round Top Grills</option>
+										</select>
 									</div>
-									<div class="tablerow bdr-left bdr-right bdr-bottom">
-										<div class="tablecell">Shipping:</div>
-										<div class="tablecell output align-right">
-											<output id="shipping">0</output>
-										</div>
+								</div>
+								<div class="tablerow bdr-top bdr-left bdr-right">
+									<div class="tablecell">Unit Price:</div>
+									<div class="tablecell output align-right">
+										<output id="unitPrice" for="height width">0.00</output>
 									</div>
-									<div class="tablerow bdr-left bdr-right bdr-bottom">
-										<div class="tablecell">Total Price:</div>
-										<div class="tablecell output align-right">
-											<output id="totalPrice">0</output>
-										</div>
+								</div>
+								<div class="tablerow bdr-left bdr-right">
+									<div class="tablecell">Quantity:</div>
+									<div class="tablecell output align-right">
+										<output id="quantity">0</output>
 									</div>
-									<div class="tablerow">
-										<div class="tablecell"></div>
-										<div class="tablecell align-right">
-											<input type="submit" value="Add To Cart" />
-										</div>
+								</div>
+								<div class="tablerow bdr-left bdr-right bdr-bottom">
+									<div class="tablecell">Sub Total:</div>
+									<div class="tablecell output align-right">
+										<output id="subtotal">0</output>
+									</div>
+								</div>
+								<div class="tablerow bdr-left bdr-right bdr-bottom">
+									<div class="tablecell">Shipping:</div>
+									<div class="tablecell output align-right">
+										<output id="shipping">0</output>
+									</div>
+								</div>
+								<div class="tablerow bdr-left bdr-right bdr-bottom">
+									<div class="tablecell">Total Price:</div>
+									<div class="tablecell output align-right">
+										<output id="totalPrice">0</output>
+									</div>
+								</div>
+								<div class="tablerow">
+									<div class="tablecell"></div>
+									<div class="tablecell align-right">
+										<input type="submit" id="addToCart" value="Add To Cart" />
 									</div>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
 					<footer>&copy; EBS</footer>
 				</div>
