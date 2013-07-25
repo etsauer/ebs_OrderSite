@@ -5,13 +5,19 @@ define([ "dojo/dom", "dojo/json", "dojo/cookie", "dojo/_base/array" ],
 				load : function(config) {
 					var cart = this.get(config);
 					var cartDiv = dom.byId(config.cart.domWrapper);
-					console.log("Shopping Cart: " + cart);
-					cartDiv.innerHTML = "<p>Shopping Cart</p>"; 
+					// console.log("Shopping Cart: " + cart);
+					cartDiv.innerHTML = "<p>Shopping Cart</p>";
 					cartDiv.innerHTML += this.getHTML(cart);
 				},
-				
+
 				get : function(config) {
-					return json.parse(cookie(config.cart.cookieName));
+					var cookieName = config.cart.cookieName;
+					var cookieObj = cookie(cookieName);
+					if (typeof cookieObj == undefined) {
+						return null;
+					}
+					var cart = json.parse(cookieObj);
+					return cart;
 				},
 
 				getHTML : function(cart) {
@@ -27,23 +33,24 @@ define([ "dojo/dom", "dojo/json", "dojo/cookie", "dojo/_base/array" ],
 					html += '</ul>';
 					return html;
 				},
-				
+
 				update : function(config, cart) {
 					cookie(config.cart.cookieName, json.stringify(cart), {
-						expires : 5
+						max_age : 60 * 5
 					});
 				},
-				
+
 				add : function(config, item) {
 					var cart = this.init(config);
 					cart.items.push(item);
 					this.update(config, cart);
 					this.load(config);
 				},
-				
+
 				init : function(config) {
 					var cart = this.get(config);
-					if (cart) {
+					if (typeof cart.items !== undefined
+							&& cart.items.length > 0) {
 						return cart;
 					}
 					cart = {};

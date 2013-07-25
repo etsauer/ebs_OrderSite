@@ -10,7 +10,7 @@ define([ "dojo/json", "dojo/request/xhr" ], function(json, xhr) {
 			}, function(err) {
 				console.error(err);
 			}, function(evt) {
-				console.log(evt);
+//				console.log(evt);
 			});
 		}
 	}
