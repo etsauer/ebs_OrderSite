@@ -1,27 +1,43 @@
 // module requirements
-require([ "dojo/dom", "dojo/on", "dojo/request/xhr", "dojo/json", "ebs/prices",
-		"dojo/domReady!" ], function(dom, on, xhr, json, prices) {
+require([ "dojo/dom", "dojo/on", "ebs/prices", "ebs/cart", "ebs/conf",
+		"dojo/ready" ], function(dom, on, prices, cart, conf, ready) {
 
-	// Create config object from json config file
-	var config = null;
-	xhr("js/config.json", {
-		handleAs : "json"
-	}).then(function(data) {
-		config = data;
-	}, function(error) {
-		console.error(error);
-	})
-	
-	on(dom.byId("height"), "keyup", function(event) {
-		prices.calculate(config);
+	ready(function() {
+
+		conf.get("js/config.json", init);
+
+		function init(config) {
+
+			on(dom.byId("height"), "keyup", function(event) {
+				prices.calculate(config);
+			});
+			on(dom.byId("width"), "keyup", function(event) {
+				prices.calculate(config);
+			});
+			on(dom.byId("qty"), "keyup", function(event) {
+				prices.calculate(config);
+			});
+			on(dom.byId("grills"), "change", function(event) {
+				prices.calculate(config);
+			});
+			on(dom.byId("addToCart"), "click", function(event) {
+				var item = {
+					productName : "Custom Window",
+					height      : dom.byId("height").value,
+					width       : dom.byId("width").value,
+					qty         : dom.byId("qty").value,
+					unitPrice   : dom.byId("unitPrice").innerHTML,
+					subTotal    : dom.byId("subtotal").innerHTML
+				};
+				
+				cart.add(config, item);
+			});
+
+			//cart.putSampleCart(config);
+			cart.load(config);
+
+		}
+
 	});
-	on(dom.byId("width"), "keyup", function(event) {
-		prices.calculate(config);
-	});
-	on(dom.byId("qty"), "keyup", function(event) {
-		prices.calculate(config);
-	});
-	on(dom.byId("grills"), "change", function(event) {
-		prices.calculate(config);
-	});
+
 });

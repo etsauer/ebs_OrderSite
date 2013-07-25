@@ -1,5 +1,9 @@
 {
 	"restapis" : {
 		"calculator" : "/service/calculate"
+	},
+	"cart" : {
+		"cookieName" : "ebs_shopping_cart",
+		"domWrapper" : "cart"
 	}
 }
