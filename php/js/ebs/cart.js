@@ -4,16 +4,19 @@ define([ "dojo/dom", "dojo/json", "dojo/cookie", "dojo/_base/array" ],
 			return {
 				load : function(config) {
 					var cart = this.get(config);
-					var cartDiv = dom.byId(config.cart.domWrapper);
-					// console.log("Shopping Cart: " + cart);
-					cartDiv.innerHTML = "<p>Shopping Cart</p>";
-					cartDiv.innerHTML += this.getHTML(cart);
+					if (cart != null) {
+						var cartDiv = dom.byId(config.cart.domWrapper);
+						// console.log("Shopping Cart: " + cart);
+						cartDiv.innerHTML = "<p>Shopping Cart</p>";
+						cartDiv.innerHTML += this.getHTML(cart);
+					}
 				},
 
 				get : function(config) {
 					var cookieName = config.cart.cookieName;
 					var cookieObj = cookie(cookieName);
-					if (typeof cookieObj == undefined) {
+					if (typeof cookieObj == undefined || cookieObj == undefined
+							|| !cookieObj) {
 						return null;
 					}
 					var cart = json.parse(cookieObj);
