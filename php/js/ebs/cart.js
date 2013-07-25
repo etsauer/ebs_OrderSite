@@ -52,7 +52,8 @@ define([ "dojo/dom", "dojo/json", "dojo/cookie", "dojo/_base/array" ],
 
 				init : function(config) {
 					var cart = this.get(config);
-					if (typeof cart.items !== undefined
+					if (cart && cart !== undefined
+							&& typeof cart.items !== undefined
 							&& cart.items.length > 0) {
 						return cart;
 					}
