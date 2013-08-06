@@ -51,6 +51,13 @@ define([ "dojo/dom", "dojo/request/xhr", "dojo/json" ], function(dom, xhr,
 				return false;
 			}
 			
+			// Round height and width to nearest 8th of an inch
+			heightBox.value = Math.round(heightBox.value * 8) / 8;
+			widthBox.value = Math.round(widthBox.value * 8) / 8;
+			
+			// Round quantity to whole number
+			qtyBox.value = Math.round(qtyBox.value);
+			
 			return true;
 		}
 	};
