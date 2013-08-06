@@ -27,11 +27,11 @@ define([ "dojo/dom", "dojo/request/xhr", "dojo/json" ], function(dom, xhr,
 					var subtotal = data.subtotal;
 					var shipping = data.shipping;
 					var total = data.totalPrice;
-					dom.byId("unitPrice").innerHTML = unit;
+					dom.byId("unitPrice").innerHTML = '$\t' + unit.toFixed(2);
 					dom.byId("quantity").innerHTML = qtyBox.value;
-					dom.byId("subtotal").innerHTML = subtotal;
-					dom.byId("shipping").innerHTML = shipping;
-					dom.byId("totalPrice").innerHTML = total;
+					dom.byId("subtotal").innerHTML = '$\t' + subtotal.toFixed(2);
+					dom.byId("shipping").innerHTML = (shipping != 'FREE') ? '$\t' + shipping.toFixed(2) : shipping;
+					dom.byId("totalPrice").innerHTML = '$\t' + total.toFixed(2);
 				} catch (err) {
 					errorMsg.innerHTML = "Error: " + err;
 				}
