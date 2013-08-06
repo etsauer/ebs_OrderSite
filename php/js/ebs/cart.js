@@ -1,15 +1,22 @@
-define([ "dojo/dom", "dojo/json", "dojo/cookie", "dojo/_base/array" ],
-		function(dom, json, cookie, array) {
+define([ "dojo/dom", "dojo/json", "dojo/cookie", "dojo/_base/array", "dojo/query", "dojo/on", "dojo/NodeList-dom" ],
+		function(dom, json, cookie, array, query, on) {
 
 			return {
 				load : function(config) {
 					var cart = this.get(config);
 					if (cart != null) {
 						var cartDiv = dom.byId(config.cart.domWrapper);
-						// console.log("Shopping Cart: " + cart);
 						cartDiv.innerHTML = "<p>Shopping Cart</p>";
 						cartDiv.innerHTML += this.getHTML(cart);
 					}
+					
+					var self= this;
+					query(".remove_item").forEach(function(node, i) {
+						on(query(".remove_item")[i], "click", function(event) {
+							self.remove(config, i);
+						});					
+					});
+
 				},
 
 				get : function(config) {
@@ -27,10 +34,12 @@ define([ "dojo/dom", "dojo/json", "dojo/cookie", "dojo/_base/array" ],
 					var html = '';
 					html += '<ul>';
 
-					array.forEach(cart.items, function(item) {
+					array.forEach(cart.items, function(item, i) {
 						html += '<li>' + item.qty + "x " + item.productName
 								+ " " + item.height + " x " + item.width
-								+ " ... $" + item.subTotal + '</li>';
+								+ " ... $" + item.subTotal + '<br/>'
+								+ '<a class="control remove_item">remove</a>'
+								+ '</li>';
 					});
 
 					html += '</ul>';
@@ -46,6 +55,13 @@ define([ "dojo/dom", "dojo/json", "dojo/cookie", "dojo/_base/array" ],
 				add : function(config, item) {
 					var cart = this.init(config);
 					cart.items.push(item);
+					this.update(config, cart);
+					this.load(config);
+				},
+				
+				remove : function(config, itemId) {
+					var cart = this.init(config);
+					cart.items.splice(itemId, 1);
 					this.update(config, cart);
 					this.load(config);
 				},
