@@ -35,7 +35,7 @@ require([ "dojo/dom", "dojo/on", "ebs/prices", "ebs/cart", "ebs/conf",
 
 			//cart.putSampleCart(config);
 			cart.load(config);
-
+			
 		}
 
 	});
