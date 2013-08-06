@@ -8,13 +8,13 @@ require([ "dojo/dom", "dojo/on", "ebs/prices", "ebs/cart", "ebs/conf",
 
 		function init(config) {
 
-			on(dom.byId("height"), "keyup", function(event) {
+			on(dom.byId("height"), "blur", function(event) {
 				prices.calculate(config);
 			});
-			on(dom.byId("width"), "keyup", function(event) {
+			on(dom.byId("width"), "blur", function(event) {
 				prices.calculate(config);
 			});
-			on(dom.byId("qty"), "keyup", function(event) {
+			on(dom.byId("qty"), "blur", function(event) {
 				prices.calculate(config);
 			});
 			on(dom.byId("grills"), "change", function(event) {
